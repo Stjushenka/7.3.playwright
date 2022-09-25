@@ -16,8 +16,8 @@ test('test', async ({ page }) => {
   // Click [data-testid="login-submit-btn"]
   await page.locator('[data-testid="login-submit-btn"]').click();
   await expect(page).toHaveURL('https://netology.ru/profile');
-  // Click text=Мои курсы и профессии
-  await page.locator('text=Мои курсы и профессии').click();
+  
+  await expect(page.locator('h2')).toHaveText('Мои курсы и профессии');
 });
 
 
@@ -40,6 +40,8 @@ test('test', async ({ page }) => {
   await page.locator('[placeholder="Пароль"]').fill('123456789');
   // Click [data-testid="login-submit-btn"]
   await page.locator('[data-testid="login-submit-btn"]').click();
-  // Click [data-testid="login-error-hint"]
-  await page.locator('[data-testid="login-error-hint"]').click();
+  
+  await expect(page.locator("[data-testid='login-error-hint']")).toHaveText(
+    'Вы ввели неправильно логин или пароль'
+);
 });
